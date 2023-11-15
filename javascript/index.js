@@ -40,3 +40,39 @@ const questions = [
     choices: ["MIT", "GPL-3.0", "MPL-2.0", "Apache-2.0", "MPL-2.0", "None"],
   },
 ];
+
+function generateReadMe(answers) {
+  return `
+# ${answers.title}
+
+## Description
+${answers.description}
+
+## Table of Contents 
+- [Installation](#installation)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [Tests](#tests)
+- [License](#license) 
+
+## Installation
+${answers.installation}
+
+## Usage
+${answers.usage}
+
+## Contributing
+${answers.contribution}
+
+## Tests
+${answers.test}
+
+## License
+${answers.license}`;
+}
+
+inquirer.prompt(questions).then((answers) => {
+  fs.writeFile("README.md", generateReadMe(answers), (err) =>
+    err ? console.error(err) : console.log("It worked!")
+  );
+});
