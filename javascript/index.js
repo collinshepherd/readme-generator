@@ -1,7 +1,9 @@
+// Including packages required for the application to run properly
 const fs = require("fs");
 
 const inquirer = require("inquirer");
 
+// Questions object containing  everything needed for the inquirer prompt
 const questions = [
   {
     type: "input",
@@ -52,6 +54,7 @@ const questions = [
   },
 ];
 
+// Function that generates a readme file into a string literal for the fs writefile to use
 function generateReadMe(answers) {
   return `
 # ${answers.title}
@@ -72,8 +75,9 @@ ${"```"}
 ${answers.installation}
 ${"```"}
 ## Usage
+${"```"}
 ${answers.usage}
-
+${"```"}
 ## Contributing
 ${answers.contribution}
 
@@ -91,6 +95,7 @@ ${answers.license}
 For any questions reach out to me at ${answers.email}`;
 }
 
+// Prompting the user in the terminal to enter their specific answers and then running the fs writefile to generate a markdown file with the users answers
 inquirer.prompt(questions).then((answers) => {
   fs.writeFile("README.md", generateReadMe(answers), (err) =>
     err ? console.error(err) : console.log("It worked!")
