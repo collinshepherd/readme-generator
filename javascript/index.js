@@ -55,6 +55,7 @@ const questions = [
 function generateReadMe(answers) {
   return `
 # ${answers.title}
+${generateLicense(answers.license)}
 
 ## Description
 ${answers.description}
@@ -80,7 +81,7 @@ ${answers.contribution}
 ${answers.tests}
 
 ## License
-${generateLicense(answers.license)}
+${answers.license}
 
 ## Questions
 [GitHub](https://github.com/${answers.github})
